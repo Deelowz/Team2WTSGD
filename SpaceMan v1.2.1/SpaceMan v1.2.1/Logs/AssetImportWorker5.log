@@ -9,15 +9,15 @@ C:\Program Files\Unity 2022.3.5f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker5
 -projectPath
-C:/Users/deelo/Desktop/SpaceMan v1.2.1/SpaceMan v1.2.1
+C:/Users/deelo/Desktop/Team2WTSGD/SpaceMan v1.2.1/SpaceMan v1.2.1
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker5.log
 -srvPort
-64215
-Successfully changed project path to: C:/Users/deelo/Desktop/SpaceMan v1.2.1/SpaceMan v1.2.1
-C:/Users/deelo/Desktop/SpaceMan v1.2.1/SpaceMan v1.2.1
+55884
+Successfully changed project path to: C:/Users/deelo/Desktop/Team2WTSGD/SpaceMan v1.2.1/SpaceMan v1.2.1
+C:/Users/deelo/Desktop/Team2WTSGD/SpaceMan v1.2.1/SpaceMan v1.2.1
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,15 +49,15 @@ C:/Users/deelo/Desktop/SpaceMan v1.2.1/SpaceMan v1.2.1
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [11336] Host "[IP] 192.168.50.134 [Port] 0 [Flags] 2 [Guid] 2912011920 [EditorId] 2912011920 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-7KNF0OH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [35408] Host "[IP] 192.168.50.134 [Port] 0 [Flags] 2 [Guid] 3395715040 [EditorId] 3395715040 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-7KNF0OH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [11336] Host "[IP] 192.168.50.134 [Port] 0 [Flags] 2 [Guid] 2912011920 [EditorId] 2912011920 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-7KNF0OH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [35408] Host "[IP] 192.168.50.134 [Port] 0 [Flags] 2 [Guid] 3395715040 [EditorId] 3395715040 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-7KNF0OH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 27.53 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 40.81 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.5f1 (9674261d40ee)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity 2022.3.5f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/deelo/Desktop/SpaceMan v1.2.1/SpaceMan v1.2.1/Assets
+[Subsystems] Discovering subsystems at path C:/Users/deelo/Desktop/Team2WTSGD/SpaceMan v1.2.1/SpaceMan v1.2.1/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -69,44 +69,44 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity 2022.3.5f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity 2022.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity 2022.3.5f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56160
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56920
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity 2022.3.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.013921 seconds.
-- Loaded All Assemblies, in  0.569 seconds
+Registered in 0.034592 seconds.
+- Loaded All Assemblies, in  1.386 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.292 seconds
-Domain Reload Profiling: 855ms
-	BeginReloadAssembly (185ms)
+- Finished resetting the current domain, in  0.459 seconds
+Domain Reload Profiling: 1793ms
+	BeginReloadAssembly (463ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (44ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (83ms)
-	LoadAllAssembliesAndSetupDomain (237ms)
-		LoadAssemblies (179ms)
+	RebuildCommonClasses (94ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (228ms)
+	LoadAllAssembliesAndSetupDomain (527ms)
+		LoadAssemblies (428ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (219ms)
-			TypeCache.Refresh (218ms)
-				TypeCache.ScanAssembly (202ms)
+		AnalyzeDomain (457ms)
+			TypeCache.Refresh (455ms)
+				TypeCache.ScanAssembly (427ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (292ms)
+	FinalizeReload (460ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (216ms)
+		SetupLoadedEditorAssemblies (340ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (18ms)
-			SetLoadedEditorAssemblies (10ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (12ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (140ms)
-			ProcessInitializeOnLoadMethodAttributes (46ms)
+			ProcessInitializeOnLoadAttributes (220ms)
+			ProcessInitializeOnLoadMethodAttributes (88ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -114,53 +114,53 @@ Domain Reload Profiling: 855ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\Users\deelo\Desktop\SpaceMan v1.2.1\SpaceMan v1.2.1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\Users\deelo\Desktop\SpaceMan v1.2.1\SpaceMan v1.2.1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  1.019 seconds
-Refreshing native plugins compatible for Editor in 8.81 ms, found 4 plugins.
+Symbol file LoadedFromMemory doesn't match image C:\Users\deelo\Desktop\Team2WTSGD\SpaceMan v1.2.1\SpaceMan v1.2.1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\deelo\Desktop\Team2WTSGD\SpaceMan v1.2.1\SpaceMan v1.2.1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  1.417 seconds
+Refreshing native plugins compatible for Editor in 11.63 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.675 seconds
-Domain Reload Profiling: 1680ms
-	BeginReloadAssembly (205ms)
+- Finished resetting the current domain, in  0.916 seconds
+Domain Reload Profiling: 2314ms
+	BeginReloadAssembly (256ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (8ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (23ms)
-	RebuildCommonClasses (33ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (58ms)
-	LoadAllAssembliesAndSetupDomain (699ms)
-		LoadAssemblies (430ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (53ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (90ms)
+	LoadAllAssembliesAndSetupDomain (981ms)
+		LoadAssemblies (670ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (340ms)
-			TypeCache.Refresh (315ms)
-				TypeCache.ScanAssembly (297ms)
-			ScanForSourceGeneratedMonoScriptInfo (21ms)
-			ResolveRequiredComponents (5ms)
-	FinalizeReload (675ms)
+		AnalyzeDomain (438ms)
+			TypeCache.Refresh (404ms)
+				TypeCache.ScanAssembly (385ms)
+			ScanForSourceGeneratedMonoScriptInfo (26ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (917ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (504ms)
+		SetupLoadedEditorAssemblies (682ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
+			InitializePlatformSupportModulesInManaged (11ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (110ms)
-			ProcessInitializeOnLoadAttributes (326ms)
-			ProcessInitializeOnLoadMethodAttributes (39ms)
-			AfterProcessingInitializeOnLoad (17ms)
+			BeforeProcessingInitializeOnLoad (147ms)
+			ProcessInitializeOnLoadAttributes (428ms)
+			ProcessInitializeOnLoadMethodAttributes (61ms)
+			AfterProcessingInitializeOnLoad (30ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 10.16 ms, found 4 plugins.
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
+Refreshing native plugins compatible for Editor in 66.98 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4192 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 76 unused Assets / (135.0 KB). Loaded Objects now: 4659.
-Memory consumption went from 147.9 MB to 147.7 MB.
-Total: 3.312200 ms (FindLiveObjects: 0.321900 ms CreateObjectMapping: 0.132900 ms MarkObjects: 2.643100 ms  DeleteObjects: 0.212800 ms)
+Unloading 4195 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 76 unused Assets / (134.9 KB). Loaded Objects now: 4662.
+Memory consumption went from 148.0 MB to 147.8 MB.
+Total: 5.635800 ms (FindLiveObjects: 0.466400 ms CreateObjectMapping: 0.533400 ms MarkObjects: 4.417000 ms  DeleteObjects: 0.216900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -171,32 +171,28 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 174483.825422 seconds.
-  path: Assets/SSlogo 1.png
-  artifactKey: Guid(54fb27763b71f97409c4a76dc5cb586e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SSlogo 1.png using Guid(54fb27763b71f97409c4a76dc5cb586e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e231ddac85a7f64d1eb131305673db0') in 0.117643 seconds
+  Time since last request: 217874.276940 seconds.
+  path: Assets/hero/fly/hero_fly_0002.png
+  artifactKey: Guid(2b84b042c476c486cb682f2917b4022b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/hero/fly/hero_fly_0002.png using Guid(2b84b042c476c486cb682f2917b4022b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '068d4b7ff2590731ebb93cd22041f502') in 0.189154 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 3
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/LoadingTexture 1.renderTexture
-  artifactKey: Guid(e9bab26dbc9cde7488767b3f34f05f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/LoadingTexture 1.renderTexture using Guid(e9bab26dbc9cde7488767b3f34f05f7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df09a97b96015e0247ddf2d58184d8f3') in 0.011635 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/SpaceLogo 1.png
-  artifactKey: Guid(ca84a18fbcc5c4546a6aae1b322a4a2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SpaceLogo 1.png using Guid(ca84a18fbcc5c4546a6aae1b322a4a2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d59813f89e76e08afabec9fd9f95abb') in 0.041961 seconds
+  Time since last request: 0.000051 seconds.
+  path: Assets/Electrical hazard.gif
+  artifactKey: Guid(ba3c1401f02897e45b88051e8fc8b932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Electrical hazard.gif using Guid(ba3c1401f02897e45b88051e8fc8b932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ab34532f00cf8c86a773603a9d2b061') in 0.044829 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 3
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

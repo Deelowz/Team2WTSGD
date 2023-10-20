@@ -11,6 +11,13 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(AudioSource))]
 public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    Color m_MouseOverColor = Color.red;
+
+    //This stores the GameObject’s original color
+    Color m_OriginalColor;
+
+    //Get the GameObject’s mesh renderer to access the GameObject’s material and color
+    MeshRenderer m_Renderer;
     public AudioClip hoverSound;
     public AudioClip clickSound;
 
@@ -19,6 +26,10 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        //Fetch the mesh renderer component from the GameObject
+        m_Renderer = GetComponent<MeshRenderer>();
+        //Fetch the original color of the GameObject
+        m_OriginalColor = m_Renderer.material.color;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -26,12 +37,13 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (hoverSound != null)
         {
             audioSource.PlayOneShot(hoverSound);
+            m_Renderer.material.color = m_MouseOverColor;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        
+        m_Renderer.material.color = m_OriginalColor;
     }
 
     public void OnPointerClick(PointerEventData eventData)

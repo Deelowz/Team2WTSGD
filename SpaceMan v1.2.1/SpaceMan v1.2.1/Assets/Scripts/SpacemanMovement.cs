@@ -8,7 +8,7 @@ public class SpacemanMovement : MonoBehaviour
     public float gravityScale = 0.5f;
     public float maxBoostForce = 15f;
     public float boostFuel = 100f;
-    public float boostRechargeRate = 10f;
+    public float boostRechargeRate = 5f; // 5% per second
     public float boostActivationThreshold = 20f;
     public float cameraRotationSpeed = 2f;
     public Transform cameraTarget;
@@ -16,7 +16,10 @@ public class SpacemanMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isBoosting;
     private CinemachineFreeLook cinemachine;
-    private bool facingLeft = false; // Corrected variable name
+    private bool facingLeft = false;
+
+    private float boostDuration = 5f; // The duration of a single boost
+    private float currentBoostTime = 0f;
 
     private void Start()
     {
@@ -27,21 +30,20 @@ public class SpacemanMovement : MonoBehaviour
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component not found on the hero GameObject.");
-            enabled = false; // Disable the script to prevent further errors.
+            enabled = false;
             return;
         }
 
         if (cinemachine == null)
         {
             Debug.LogError("CinemachineFreeLook component not found on the main camera GameObject.");
-            enabled = false; // Disable the script to prevent further errors.
+            enabled = false;
             return;
         }
     }
 
     private void Update()
     {
-        // Null check for the Rigidbody2D component
         if (rb == null)
         {
             Debug.LogWarning("Rigidbody2D component is not assigned.");
@@ -61,47 +63,40 @@ public class SpacemanMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        // Activate the jet boost if enough fuel is available
-        if (Input.GetButton("Boost") && boostFuel >= boostActivationThreshold)
+        // Activate the jet boost if enough fuel is available and within the boost duration
+        if (Input.GetButton("Boost") && boostFuel >= boostActivationThreshold && currentBoostTime < boostDuration)
         {
             float boostForce = maxBoostForce;
 
             // Consume jet fuel while boosting
-            boostFuel -= Time.deltaTime * boostRechargeRate;
+            boostFuel -= Time.deltaTime;
 
             // Apply the boost force
             rb.AddForce(Vector2.up * boostForce, ForceMode2D.Impulse);
             isBoosting = true;
+
+            // Update the boost duration timer
+            currentBoostTime += Time.deltaTime;
         }
         else
         {
             isBoosting = false;
-        }
 
-        // Recharge jet fuel up to the maximum capacity
-        if (!isBoosting && boostFuel < 100f)
-        {
-            boostFuel += Time.deltaTime * boostRechargeRate;
+            // Recharge jet fuel up to the maximum capacity at a rate of 5% per second
+            if (boostFuel < 100f)
+            {
+                boostFuel += Time.deltaTime * (boostRechargeRate / 100f * 100f);
+                boostFuel = Mathf.Clamp(boostFuel, 0f, 100f);
+            }
+
+            // Reset the boost duration timer
+            currentBoostTime = 0f;
         }
 
         // Null check for the CinemachineFreeLook component
         if (cinemachine != null && cameraTarget != null)
         {
-            cinemachine.Follow = cameraTarget.transform;
-
-            Vector3 lookAtPosition = transform.position + transform.right;
-            float angle = Mathf.Atan2(lookAtPosition.x - transform.position.x, lookAtPosition.z - transform.position.z) * Mathf.Rad2Deg;
-            cinemachine.GetRig(0).GetCinemachineComponent<CinemachineOrbitalTransposer>().m_FollowOffset.y = angle * cameraRotationSpeed;
-
-            // Check for flipping based on movement direction
-            if (horizontalInput < 0 && !facingLeft)
-            {
-                Flip();
-            }
-            else if (horizontalInput > 0 && facingLeft)
-            {
-                Flip();
-            }
+            // ...
         }
     }
 

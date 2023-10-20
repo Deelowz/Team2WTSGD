@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - aimingPoint
+  - fuelSlider
+  - FuelSlider
   layers:
   - Default
   - TransparentFX
