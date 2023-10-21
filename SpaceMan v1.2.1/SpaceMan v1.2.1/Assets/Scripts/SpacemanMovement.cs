@@ -1,32 +1,58 @@
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 
 public class SpacemanMovement : MonoBehaviour
 {
+    [SerializeField]
     public float moveSpeed = 5f;
+    private Vector2 moveInput;
+    private bool _isMoving = false;
+    private bool _isFacingRight = true;
+
+    public bool IsMoving
+    {
+        get { return _isMoving; }
+        private set
+        {
+            _isMoving = value;
+            animator.SetBool("isMoving", value);
+        }
+    }
+
+    public bool IsFlying { get; private set; }
+    public bool IsFacingRight => _isFacingRight;
+
     public float jumpForce = 2f;
     public float gravityScale = 0.5f;
-    public float maxBoostForce = 15f;
+    public float maxBoostForce = 5f;
     public float boostFuel = 100f;
     public float boostRechargeRate = 5f; // 5% per second
     public float boostActivationThreshold = 20f;
     public float cameraRotationSpeed = 2f;
     public Transform cameraTarget;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
+
+    private bool isTouchingGround;
 
     private Rigidbody2D rb;
-    private bool isBoosting;
-    private CinemachineFreeLook cinemachine;
-    private bool facingLeft = false;
+    private Animator animator;
+    private CinemachineVirtualCamera cinemachine;
 
-    private float boostDuration = 5f; // The duration of a single boost
+    private float boostDuration = 1f; // The duration of a single boost
     private float currentBoostTime = 0f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        cinemachine = Camera.main.GetComponent<CinemachineFreeLook>();
+        animator = GetComponent<Animator>();
+        cinemachine = Camera.main.GetComponent<CinemachineVirtualCamera>();
 
-        // Check if the Rigidbody2D and CinemachineFreeLook components exist
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component not found on the hero GameObject.");
@@ -34,15 +60,22 @@ public class SpacemanMovement : MonoBehaviour
             return;
         }
 
+        if (animator == null)
+        {
+            Debug.LogError("Animator component not found on the hero GameObject.");
+            enabled = false;
+            return;
+        }
+
         if (cinemachine == null)
         {
-            Debug.LogError("CinemachineFreeLook component not found on the main camera GameObject.");
+            Debug.LogError("CinemachineVirtualCamera component not found on the main camera GameObject.");
             enabled = false;
             return;
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (rb == null)
         {
@@ -50,21 +83,17 @@ public class SpacemanMovement : MonoBehaviour
             return;
         }
 
-        // Move the character
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector2 moveDirection = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-        rb.velocity = moveDirection;
+        // Apply horizontal movement
+        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
 
         // Apply jump force
-        if (Mathf.Abs(rb.velocity.y) < 0.01f && Input.GetButtonDown("Jump"))
+        if (Mathf.Abs(rb.velocity.y) < 0.01f && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         // Activate the jet boost if enough fuel is available and within the boost duration
-        if (Input.GetButton("Boost") && boostFuel >= boostActivationThreshold && currentBoostTime < boostDuration)
+        if (Keyboard.current.spaceKey.isPressed && boostFuel >= boostActivationThreshold && currentBoostTime < boostDuration)
         {
             float boostForce = maxBoostForce;
 
@@ -73,19 +102,19 @@ public class SpacemanMovement : MonoBehaviour
 
             // Apply the boost force
             rb.AddForce(Vector2.up * boostForce, ForceMode2D.Impulse);
-            isBoosting = true;
+            IsFlying = true;
 
             // Update the boost duration timer
             currentBoostTime += Time.deltaTime;
         }
         else
         {
-            isBoosting = false;
+            IsFlying = false;
 
             // Recharge jet fuel up to the maximum capacity at a rate of 5% per second
             if (boostFuel < 100f)
             {
-                boostFuel += Time.deltaTime * (boostRechargeRate / 100f * 100f);
+                boostFuel += Time.deltaTime * (boostRechargeRate / 100f * 1f);
                 boostFuel = Mathf.Clamp(boostFuel, 0f, 100f);
             }
 
@@ -93,18 +122,37 @@ public class SpacemanMovement : MonoBehaviour
             currentBoostTime = 0f;
         }
 
-        // Null check for the CinemachineFreeLook component
-        if (cinemachine != null && cameraTarget != null)
-        {
-            // ...
-        }
+        // Update the character's facing direction based on input
+        SetFacingDirection(moveInput);
+        animator.SetBool("isMoving", moveInput != Vector2.zero);
+        animator.SetBool("isFlying", IsFlying);
     }
 
-    void Flip()
+    private void SetFacingDirection(Vector2 moveInput)
     {
-        facingLeft = !facingLeft;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        if (moveInput.x < 0)
+        {
+            _isFacingRight = false;
+        }
+        else if (moveInput.x > 0)
+        {
+            _isFacingRight = true;
+        }
+
+        Vector3 scale = transform.localScale;
+        scale.x = _isFacingRight ? 1 : -1;
+        transform.localScale = scale;
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+
+        IsMoving = moveInput != Vector2.zero;
+    }
+
+    public void OnFly(InputAction.CallbackContext context)
+    {
+        IsFlying = context.performed;
     }
 }

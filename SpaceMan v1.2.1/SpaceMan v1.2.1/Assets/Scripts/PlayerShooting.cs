@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -22,27 +23,12 @@ public class PlayerShooting : MonoBehaviour
         rechargingSpeed = 1.0f;
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1") && Time.time - lastShotTime >= timeBetweenShots)
-        {
-            Shoot();
-            if (shootingSound != null)
-            {
-                Debug.Log("Playing shooting sound");
-                shootingSound.Play();
-            }
-        }
-    }
-
     private void Shoot()
     {
         if (currentBulletCount > 0)
         {
-            // Get the mouse position in world coordinates
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-            // Calculate the direction from the player to the mouse position
             Vector2 shootingDirection = (mousePosition - firePoint.position).normalized;
 
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
@@ -51,7 +37,6 @@ public class PlayerShooting : MonoBehaviour
 
             if (rb != null)
             {
-                // Set the bullet's velocity based on the calculated direction
                 rb.velocity = shootingDirection * bulletForce;
 
                 currentBulletCount--;
@@ -67,17 +52,15 @@ public class PlayerShooting : MonoBehaviour
         }
         else
         {
-            isRecharging = true; // bullets empty, start recharge
+            isRecharging = true;
         }
     }
-
-
 
     private IEnumerator RechargeBullets()
     {
         while (isRecharging)
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
 
             if (currentBulletCount < maxBulletCount)
             {
@@ -87,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
             else
             {
                 isRecharging = false;
-                rechargingSpeed = 0; // Reset reloadSpeed
+                rechargingSpeed = 0;
             }
         }
     }
