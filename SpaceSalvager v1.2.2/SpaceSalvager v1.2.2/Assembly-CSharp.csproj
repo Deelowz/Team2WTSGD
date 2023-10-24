@@ -63,19 +63,25 @@
     <Analyzer Include="C:\Program Files\Unity 2022.3.5f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\OnMouseOverColor.cs" />
+    <Compile Include="Assets\Scripts\SmoothCameraFollow.cs" />
     <Compile Include="Assets\Scripts\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\SceneTransitions.cs" />
     <Compile Include="Assets\OnMouseOverColor.cs" />
     <Compile Include="Assets\Scripts\BackgroundMusicController.cs" />
     <Compile Include="Assets\Scripts\ButtonHoverSound.cs" />
-    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\BoostFuelBar.cs" />
+    <Compile Include="Assets\Scripts\Boss.cs" />
     <Compile Include="Assets\Scripts\SpacemanMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\SoundManagerScript.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\GroundEnemy.cs" />
     <Compile Include="Assets\Scripts\DeathZone.cs" />
+    <Compile Include="Assets\Scripts\DoubleClickDetector.cs" />
+    <Compile Include="Assets\Scripts\BulletDamage.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\AimingPoint.cs" />
   </ItemGroup>

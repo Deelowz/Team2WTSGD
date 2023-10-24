@@ -1816,6 +1816,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -4758600851428921773, guid: e711f0201a3d1554890fac79f525ccc3, type: 3}
+      propertyPath: boostFuelSlider
+      value: 
+      objectReference: {fileID: 505183788}
+    - target: {fileID: -4758600851428921773, guid: e711f0201a3d1554890fac79f525ccc3, type: 3}
       propertyPath: boostRechargeRate
       value: 1
       objectReference: {fileID: 0}
@@ -4717,6 +4721,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1746780263}
     - target: {fileID: -586216170344313585, guid: ff93c4f13c0d58041979074f917ecf3a, type: 3}
+      propertyPath: takeDamage
+      value: 
+      objectReference: {fileID: 862638619}
+    - target: {fileID: -586216170344313585, guid: ff93c4f13c0d58041979074f917ecf3a, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 822881614}
@@ -5145,8 +5153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2ca2b944c43af4fa2227fe8f18b2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 862638618}
   maxHealth: 100
+  healthSlider: {fileID: 0}
 --- !u!1 &865149841
 GameObject:
   m_ObjectHideFlags: 0
@@ -11559,6 +11567,8 @@ MonoBehaviour:
   maxBulletCount: 50
   timeBetweenShots: 0.5
   shootingSound: {fileID: 996578912}
+  camAnim: {fileID: 0}
+  takeDamage: {fileID: 0}
 --- !u!1 &1752536657
 GameObject:
   m_ObjectHideFlags: 0
@@ -13635,8 +13645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2ca2b944c43af4fa2227fe8f18b2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 862638618}
-  maxHealth: 50
+  maxHealth: 100
+  healthSlider: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

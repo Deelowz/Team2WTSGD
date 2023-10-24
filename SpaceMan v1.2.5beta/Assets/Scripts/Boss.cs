@@ -1,0 +1,57 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Boss : MonoBehaviour
+{
+    public int health;
+    public int damage;
+    private float timeBtwDamage = 1.5f;
+
+    public Animator camAnim;
+    public Slider healthBar;
+    private Animator anim;
+    public bool isDead;
+
+    // Reference to the SpacemanMovement class
+    private SpacemanMovement spaceman;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        spaceman = new SpacemanMovement(); // Create an instance of SpacemanMovement
+    }
+
+    private void Update()
+    {
+        if (health <= 25)
+        {
+            anim.SetTrigger("stageTwo");
+        }
+
+        if (health <= 0)
+        {
+            anim.SetTrigger("death");
+        }
+
+        // Give the player some time to recover before taking more damage!
+        if (timeBtwDamage > 0)
+        {
+            timeBtwDamage -= Time.deltaTime;
+        }
+
+        healthBar.value = health;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Deal the player damage!
+        if (other.CompareTag("Player") && !isDead)
+        {
+            if (timeBtwDamage <= 0)
+            {
+                camAnim.SetTrigger("shake");
+                spaceman.health -= damage; // Access health property from SpacemanMovement
+            }
+        }
+    }
+}
