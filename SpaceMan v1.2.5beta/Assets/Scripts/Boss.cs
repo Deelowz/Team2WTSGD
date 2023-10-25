@@ -18,7 +18,7 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        spaceman = new SpacemanMovement(); // Create an instance of SpacemanMovement
+        spaceman = GameObject.FindGameObjectWithTag("Player").GetComponent<SpacemanMovement>();
     }
 
     private void Update()
