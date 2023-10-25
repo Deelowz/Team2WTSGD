@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
-    public Slider healthSlider; 
+    public Slider healthSlider;
     public Transform respawnPoint;
-    public AudioSource damageSound; 
+    public AudioSource damageSound;
     public AudioSource deathSound;
 
     private void Start()
@@ -18,35 +19,30 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        if (damageAmount <= 0)
-    {
-        Debug.LogWarning("Invalid or non-positive damage amount. Ensure damage is a positive value.");
-        return;
-    }
         currentHealth -= damageAmount;
-        currentHealth = Mathf.Max(currentHealth, 0);
+        currentHealth = Mathf.Max(0, currentHealth);
+
+        if (damageAmount <= 0)
+        {
+            Debug.LogWarning("Invalid or non-positive damage amount. Ensure damage is a positive value.");
+            return;
+        }
+
         UpdateHealthUI();
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
-        else
+        else if (damageSound != null)
         {
-            if (damageSound != null)
-            {
-                damageSound.Play();
-            }
+            damageSound.Play();
         }
     }
+
     private void UpdateHealthUI()
     {
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-            
-        }
-        else if (healthSlider != null)
+        if (healthSlider != null)
         {
             healthSlider.value = (float)currentHealth / maxHealth;
         }
@@ -55,19 +51,18 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player is defeated!");
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         if (deathSound != null)
         {
             deathSound.Play();
         }
-        
+
         Respawn();
     }
 
     private void Respawn()
     {
         currentHealth = maxHealth;
-
         transform.position = respawnPoint.position;
     }
 }

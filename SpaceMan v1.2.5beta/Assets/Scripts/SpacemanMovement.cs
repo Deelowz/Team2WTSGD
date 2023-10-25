@@ -26,6 +26,7 @@ public class SpacemanMovement : MonoBehaviour
     public AudioClip damageSound;
     public AudioClip deathSound;
     private AudioSource audioSource;
+    public AudioClip jetpackSound;
 
     public Transform respawnPoint;
 
@@ -40,7 +41,7 @@ public class SpacemanMovement : MonoBehaviour
     {
         InitializeComponents();
         currentHealth = maxHealth;
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void InitializeComponents()

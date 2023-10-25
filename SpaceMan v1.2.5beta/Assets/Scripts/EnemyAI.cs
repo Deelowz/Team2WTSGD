@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     private int currentHealth;
 
     private bool isAttacking = false;
-    private float attackInterval = 1.0f; // Time between each attack in seconds
+    private float attackInterval = 3.0f;
     private float attackTimer = 0.0f;
 
     private void Start()
