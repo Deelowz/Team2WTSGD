@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class EnemyAI : MonoBehaviour
 
     private int maxHealth = 50;
     private int currentHealth;
+
+    private bool isAttacking = false;
+    private float attackInterval = 1.0f; // Time between each attack in seconds
+    private float attackTimer = 0.0f;
 
     private void Start()
     {
@@ -28,24 +33,46 @@ public class EnemyAI : MonoBehaviour
                 Vector2 moveDirection = (player.position - transform.position).normalized;
                 transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-                if (distanceToPlayer < attackRange)
+                if (distanceToPlayer < attackRange && !isAttacking)
+                {
+                    isAttacking = true;
+                }
+            }
+            else
+            {
+                isAttacking = false;
+            }
+
+            if (isAttacking)
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackInterval)
                 {
                     AttackPlayer();
+                    attackTimer = 0.0f;
                 }
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             TakeDamage();
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
-        else if (collision.gameObject.CompareTag("Player"))
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(Mathf.FloorToInt(playerDamage * Time.deltaTime));
+            }
         }
     }
 
@@ -57,12 +84,11 @@ public class EnemyAI : MonoBehaviour
             playerHealth.TakeDamage(playerDamage);
         }
     }
+
     public int GetDamageAmount()
     {
         return damageAmount;
-        return playerDamage;
     }
-
 
     private void TakeDamage()
     {

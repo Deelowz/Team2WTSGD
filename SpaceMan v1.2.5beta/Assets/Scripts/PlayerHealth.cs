@@ -1,40 +1,73 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
-    public Transform respawnPoint; // Assign the respawn point in the Inspector.
+    public Slider healthSlider; 
+    public Transform respawnPoint;
+    public AudioSource damageSound; 
+    public AudioSource deathSound;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        UpdateHealthUI();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (damageAmount <= 0)
+    {
+        Debug.LogWarning("Invalid or non-positive damage amount. Ensure damage is a positive value.");
+        return;
+    }
+        currentHealth -= damageAmount;
+        currentHealth = Mathf.Max(currentHealth, 0);
+        UpdateHealthUI();
+
+        if (currentHealth < 0)
         {
             Die();
+        }
+        else
+        {
+            if (damageSound != null)
+            {
+                damageSound.Play();
+            }
+        }
+    }
+    private void UpdateHealthUI()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+            
+        }
+        else if (healthSlider != null)
+        {
+            healthSlider.value = (float)currentHealth / maxHealth;
         }
     }
 
     private void Die()
     {
-        // Implement player death logic, such as showing a game over screen.
         Debug.Log("Player is defeated!");
-
-        // Respawn the player at the assigned respawn point.
+        
+        if (deathSound != null)
+        {
+            deathSound.Play();
+        }
+        
         Respawn();
     }
 
     private void Respawn()
     {
-        // Reset the player's health.
         currentHealth = maxHealth;
 
-        // Move the player to the respawn point.
         transform.position = respawnPoint.position;
     }
 }
